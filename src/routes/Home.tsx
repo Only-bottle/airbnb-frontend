@@ -1,4 +1,5 @@
-import { Grid } from "@chakra-ui/react";
+import { Grid, useEditable } from "@chakra-ui/react";
+import { useEffect } from "react";
 import { useQuery } from "react-query";
 import { getRooms } from "../api";
 import Room from "../components/Room";
@@ -7,6 +8,9 @@ import { IRoomList } from "../types";
 
 export default function Home() {
   const { isLoading, data } = useQuery<IRoomList[]>(["rooms"], getRooms);
+  useEffect(() => {
+    console.log('heelo');
+  })
   return (
     <Grid
       mt={10}
