@@ -1,5 +1,6 @@
 import { Grid } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import { getRooms } from "../api";
 import Room from "../components/Room";
 import RoomSkeleton from "../components/RoomSkeleton";
 
@@ -21,17 +22,7 @@ interface IRoom {
 }
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [rooms, setRooms] = useState<IRoom[]>([]);
-  const fetchRooms = async () => {
-    const response = await fetch("http://127.0.0.1:8000/api/v1/rooms/");
-    const json = await response.json();
-    setRooms(json);
-    setIsLoading(false);
-  };
-  useEffect(() => {
-    fetchRooms();
-  }, []);
+  const { isLoading, data } = useQuery<IRoom[]>(["rooms"], getRooms);
   return (
     <Grid
       mt={10}
@@ -63,9 +54,9 @@ export default function Home() {
           <RoomSkeleton />
         </>
       ) : null}
-      {rooms.map((room) => (
+      {data?.map((room) => (
         <Room
-          imageUrl={room.photos[0]?.file ?? 'https://source.unsplash.com/random/450x450'}
+          imageUrl={room.photos[0].file}
           name={room.name}
           rating={room.rating}
           city={room.city}
