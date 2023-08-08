@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import { ReactQueryDevtools } from 'react-query/devtools'
+import { ReactQueryDevtools } from "react-query/devtools";
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
 
@@ -8,7 +8,7 @@ export default function Root() {
     <Box>
       <Header />
       <Outlet />
-      <ReactQueryDevtools initialIsOpen={false} />
+      <ReactQueryDevtools />
     </Box>
   );
 }

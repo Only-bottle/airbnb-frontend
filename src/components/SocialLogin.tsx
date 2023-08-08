@@ -2,17 +2,21 @@ import { FaComment, FaGithub } from "react-icons/fa";
 import { Box, Button, Divider, HStack, Text, VStack } from "@chakra-ui/react";
 
 export default function SocialLogin() {
-  const githubParams = {
-    client_id: "c39ea00b6a5010f68c2b",
-    scope: "read:user,user:email",
-  };
-  const github_params = new URLSearchParams(githubParams).toString();
-  const kakaoParams = {
-    client_id: "33564d2c5ea25acf55caf57c7b334bf4",
+  let kakaoParams = {
+    client_id: "c5faa6465d2032b32a9df057d3c74c1b",
     redirect_uri: "http://127.0.0.1:3000/social/kakao",
     response_type: "code",
   };
-  const kakao_params = new URLSearchParams(kakaoParams).toString();
+  const githubParams = {
+    client_id: "5195598d392601f20eea",
+    scope: "read:user,user:email",
+  };
+  const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?${new URLSearchParams(
+    kakaoParams
+  ).toString()}`;
+  const githubUrl = `https://github.com/login/oauth/authorize?${new URLSearchParams(
+    githubParams
+  ).toString()}`;
   return (
     <Box mb={4}>
       <HStack my={8}>
@@ -23,17 +27,12 @@ export default function SocialLogin() {
         <Divider />
       </HStack>
       <VStack>
-        <Button
-          as="a"
-          href={`https://github.com/login/oauth/authorize?${github_params}`}
-          w="100%"
-          leftIcon={<FaGithub />}
-        >
+        <Button as="a" href={githubUrl} w="100%" leftIcon={<FaGithub />}>
           Continue with Github
         </Button>
         <Button
           as="a"
-          href={`https://kauth.kakao.com/oauth/authorize?${kakao_params}`}
+          href={kakaoUrl}
           w="100%"
           leftIcon={<FaComment />}
           colorScheme={"yellow"}
