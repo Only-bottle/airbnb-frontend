@@ -60,6 +60,19 @@ export const kakaoLogin = (code: string) =>
     )
     .then((response) => response.status);
 
+export const naverLogin = (code: string) =>
+  instance
+    .post(
+      `users/naver`,
+      { code },
+      {
+        headers: {
+          "X-CSRFToken": Cookie.get("csrftoken") || "",
+        },
+      }
+    )
+    .then((response) => response.status);
+
 export interface IUsernameLoginVariables {
   username: string;
   password: string;

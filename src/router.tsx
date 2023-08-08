@@ -3,6 +3,7 @@ import Root from "./components/Root";
 import GithubConfirm from "./routes/GithubConfirm";
 import Home from "./routes/Home";
 import KakaoConfirm from "./routes/KakaoConfirm";
+import NaverConfirm from "./routes/NaverConfirm";
 import NotFound from "./routes/NotFound";
 import RoomDetail from "./routes/RoomDetail";
 import UploadRoom from "./routes/UploadRoom";
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
           {
             path: "kakao",
             element: <KakaoConfirm />,
+          },
+          {
+            path: "naver",
+            element: <NaverConfirm />,
           },
         ],
       },
